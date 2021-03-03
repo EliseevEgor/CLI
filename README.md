@@ -24,9 +24,7 @@
 	- Так повторяем, пока не считаем exit.
 
 ## Запуск
-./gradlew build
-
-./gradlew run
-
-./gradlew test - для запуска тестов
+- ./gradlew build
+- ./gradlew run
+- ./gradlew test - для запуска тестов
 
