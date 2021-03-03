@@ -26,6 +26,8 @@
 
 ## Запуск
 ./gradlew build
+
 ./gradlew run
-./gradle test - для запуска тестов
+
+./gradlew test - для запуска тестов
 
