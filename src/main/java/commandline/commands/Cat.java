@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-/* Function Cat
- * if the command hasn't received any args, then it returns previous
- * calculation, else returns the contents of args
+/** Function Cat
+   if the command hasn't received any args, then it returns previous
+   calculation, else returns the contents of args
  */
 public class Cat implements Command {
     @Override

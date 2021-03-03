@@ -2,9 +2,9 @@ package commandline.commands;
 
 import java.util.List;
 
-/* Function echo
- * if it has args then returns them
- * else returns empty string
+/** Function echo
+   if it has args then returns them
+   else returns empty string
  */
 public class Echo implements Command {
     @Override

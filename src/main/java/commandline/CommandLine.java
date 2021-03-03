@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/*
+/**
   Main Class
     until get "exit":
      read the line, split it by |,
@@ -19,11 +19,11 @@ import java.util.Scanner;
      get the command name and arguments,
      send the name to the commandBuilder,
      then execute the command by run method
-*/
+**/
 public class CommandLine {
     private static final List<String> results = new ArrayList<>();
 
-    // main function for CommandLine
+    /** main function for CommandLine **/
     private static String work(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
         boolean cycle = true;
@@ -76,7 +76,7 @@ public class CommandLine {
         work(System.in);
     }
 
-    // func only for test
+    //func only for test
     public static String forTest(InputStream input) {
         return work(input);
     }

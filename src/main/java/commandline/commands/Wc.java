@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-/* Function wc
- * if it has arguments, then it counts the number of lines, words and bytes in files
- * else it counts the same in result of previous calculations
+/** Function wc
+   if it has arguments, then it counts the number of lines, words and bytes in files
+   else it counts the same in result of previous calculations
  */
 public class Wc implements Command {
     private long totalByteCount = 0;

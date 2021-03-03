@@ -6,8 +6,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/*
- * Class for parsing commands using regular expressions
+/**
+   Class for parsing commands using regular expressions
 */
 public class Parser {
     private static final Variables variables = new Variables();

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/* Class for running shell commands */
+/** Class for running shell commands */
 public class ShellCommand {
     private ShellCommand() {
     }

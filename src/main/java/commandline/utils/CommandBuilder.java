@@ -2,9 +2,9 @@ package commandline.utils;
 
 import commandline.commands.*;
 
-/* Takes command's name
- * if command is found then returns the instance of the command class
- * else returns null
+/** Takes command's name
+    if command is found then returns the instance of the command class
+   else returns null
  */
 public class CommandBuilder {
     private CommandBuilder() {
