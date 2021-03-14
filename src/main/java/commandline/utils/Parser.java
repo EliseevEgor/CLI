@@ -55,7 +55,6 @@ public class Parser {
                     for (String one : vars) {
                         if (!one.isEmpty()) {
                             maybeCommand.append(variables.getVar(one));
-                            //list.add(variables.getVar(one));
                         }
                     }
                     list.add(maybeCommand.toString());
