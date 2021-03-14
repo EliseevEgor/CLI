@@ -27,4 +27,3 @@
 - ./gradlew build
 - ./gradlew run
 - ./gradlew test - для запуска тестов
-
