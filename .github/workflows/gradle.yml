@@ -3,7 +3,7 @@
 
 name: Java CI with Gradle
 
-on: pull_request
+on: [pull_request]
 
 jobs:
   build:
@@ -16,8 +16,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
 
@@ -31,7 +29,5 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Test
+    - name: Test with Gradle
       run: ./gradlew test
