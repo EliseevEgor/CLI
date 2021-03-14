@@ -27,6 +27,8 @@ class CommandLineTest {
      * echo 10 | wc
      * echo 10 | pwd
      * echo 10 | cat
+     * x=10  echo "aasd'$x'asd" == "aasd'10'asd"
+     * echo "aasd'$c'asd" == "aasd''asd"
      * */
     @Test
     void testEcho() throws IOException, InterruptedException {
@@ -50,6 +52,29 @@ class CommandLineTest {
         Assertions.assertEquals(ShellCommand.executeCommand("pwd"), out(input));
         input = "echo 10 | cat \n exit";
         Assertions.assertEquals("10\n", out(input));
+        input = "x=10 \n echo \"aasd'$x'asd\"\n exit";
+        Assertions.assertEquals("aasd'10'asd\n", out(input));
+        input = "echo \"aasd'$c'asd\"\n exit";
+        Assertions.assertEquals("aasd''asd\n", out(input));
+        System.setIn(System.in);
+    }
+
+    /*Test variables
+    * a=p b=wd $a$b == command pwd
+    * a=ec b=ho $a$b 5 == echo 5 == 5
+    * a=ec b=ho echo $a$b == echo echo == echo
+    * a=ec b=ho echo $a $b == echo ec ho == ec ho
+    * */
+    @Test
+    void testVars() throws IOException, InterruptedException {
+        String input = "a=p \n b=wd \n $a$b \n exit";
+        Assertions.assertEquals(ShellCommand.executeCommand("pwd"), out(input));
+        input = "a=ec \n b=ho \n $a$b 5 \n exit";
+        Assertions.assertEquals("5\n", out(input));
+        input = "a=ec \n b=ho \n echo $a$b \n exit";
+        Assertions.assertEquals("echo\n", out(input));
+        input = "a=ec \n b=ho \n echo $a $b \n exit";
+        Assertions.assertEquals("ec ho\n", out(input));
         System.setIn(System.in);
     }
 
@@ -81,6 +106,7 @@ class CommandLineTest {
      * wc gradlew.bat
      * wc 1.txt 123.txt
      * cat 1.txt | wc
+     * wc ololo  ==  wc: ololo: No such file or directory
      * */
     @Test
     void testWc() {
@@ -92,13 +118,18 @@ class CommandLineTest {
         input = "cat testFiles/1.txt | wc \n exit";
         Assertions.assertEquals("3  3  6\n", out(input));
         System.setIn(System.in);
+        input = "wc ololo \n exit";
+        Assertions.assertEquals("wc: ololo: No such file or directory\n"
+                , out(input));
     }
 
-    // Test command which is not in the project
+    // Test commands which is not in the project
     @Test
     void testOtherCommands() {
         String input = "python \n exit";
         Assertions.assertEquals("Wrong command: python\n", out(input));
         System.setIn(System.in);
+        input = "git lolol \n exit";
+        Assertions.assertEquals("Wrong command: git lolol\n", out(input));
     }
 }

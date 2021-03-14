@@ -47,7 +47,7 @@ public class Wc implements Command {
                         lineCount += 1;
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    return "wc: "+ s + ": No such file or directory";
                 }
                 totalLineCount += lineCount;
                 totalWordCount += wordCount;

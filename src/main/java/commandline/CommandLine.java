@@ -47,6 +47,11 @@ public class CommandLine {
                             }
                             String res = ShellCommand.executeCommand(input.toString());
                             results.add(res);
+                            if (res.isEmpty()) {
+                                output.append("Wrong command: ").append(input);
+                                System.out.println("Wrong command: " + input);
+                                break;
+                            }
                         } catch (InterruptedException | IOException e) {
                             output.append("Wrong command: ").append(list.get(0)).append("\n");
                             System.out.println("Wrong command: " + list.get(0));

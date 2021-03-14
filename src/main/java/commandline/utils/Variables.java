@@ -12,6 +12,6 @@ public class Variables {
     }
 
     public String getVar(String name) {
-        return vars.getOrDefault(name, " ");
+        return vars.getOrDefault(name, "");
     }
 }

@@ -14,8 +14,9 @@ public class Echo implements Command {
         }
         StringBuilder result = new StringBuilder();
         for (String s : args) {
-            result.append(s);
+            result.append(s).append(" ");
         }
+        result.deleteCharAt(result.length()-1);
         return result.toString();
     }
 }

@@ -24,7 +24,7 @@ public class Parser {
             int d = resultS.indexOf("$");
             if (d != -1 && d != resultS.length() - 1) {
                 for (i = d + 1; i < resultS.length(); i++) {
-                    if (resultS.charAt(i) == ' ') {
+                    if (resultS.charAt(i) == ' ' || resultS.charAt(i) == '\'') {
                         break;
                     }
                 }
@@ -48,8 +48,21 @@ public class Parser {
             } else if (currentS.matches("\\w+=\\w+")) {
                 String[] split = currentS.split("=");
                 variables.putVar(split[0], split[1]);
-            } else if (m.group(0).matches("\\$\\w+")) {
-                list.add(variables.getVar(currentS.substring(1)));
+            } else if (currentS.matches("\\$\\w+(\\$\\w+)*")) {
+                String[] vars = currentS.split("\\$");
+                if (vars.length > 2) {
+                    StringBuilder maybeCommand = new StringBuilder();
+                    for (String one : vars) {
+                        if (!one.isEmpty()) {
+                            maybeCommand.append(variables.getVar(one));
+                            //list.add(variables.getVar(one));
+                        }
+                    }
+                    list.add(maybeCommand.toString());
+                }
+                else {
+                    list.add(variables.getVar(currentS.substring(1)));
+                }
             } else if (currentS.charAt(0) == '\"' && currentS.charAt(currentS.length() - 1) == '\"') {
                 list.add(parseInQuotes(currentS));
             } else if (commands.contains(m.group(0))) {
