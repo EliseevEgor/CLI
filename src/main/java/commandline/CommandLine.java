@@ -33,6 +33,7 @@ public class CommandLine {
             String[] commands = userInput.split("\\s*\\|\\s*");
             for (String str : commands) {
                 List<String> list = Parser.parse(str);
+                list.removeIf(elem -> elem.equals(" "));
                 if (!list.isEmpty()) {
                     if (list.get(0).matches("exit")) {
                         cycle = false;
@@ -43,7 +44,7 @@ public class CommandLine {
                         try {
                             StringBuilder input = new StringBuilder();
                             for (String elem : list) {
-                                input.append(elem);
+                                input.append(elem).append(" ");
                             }
                             String res = ShellCommand.executeCommand(input.toString());
                             results.add(res);

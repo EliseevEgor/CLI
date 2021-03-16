@@ -113,8 +113,8 @@ class CommandLineTest {
         String input = "wc gradlew.bat \n exit";
         Assertions.assertEquals("89  357  2763 gradlew.bat\n", out(input));
         input = "wc testFiles/1.txt testFiles/123.txt \n exit";
-        Assertions.assertEquals("3  3  6 testFiles/1.txt\n" + "3  3  25 testFiles/123.txt\n" +
-                "6  6  31 total\n", out(input));
+        Assertions.assertEquals("3  3  6 testFiles/1.txt\n" + "4  4  31 testFiles/123.txt\n" +
+                "7  7  37 total\n", out(input));
         input = "cat testFiles/1.txt | wc \n exit";
         Assertions.assertEquals("3  3  6\n", out(input));
         System.setIn(System.in);
@@ -130,6 +130,6 @@ class CommandLineTest {
         Assertions.assertEquals("Wrong command: python\n", out(input));
         System.setIn(System.in);
         input = "git lolol \n exit";
-        Assertions.assertEquals("Wrong command: git lolol\n", out(input));
+        Assertions.assertEquals("Wrong command: git lolol \n", out(input));
     }
 }

@@ -19,6 +19,8 @@ public class CommandBuilder {
             return new Echo();
         } else if (commandName.equalsIgnoreCase("wc")) {
             return new Wc();
+        } else if (commandName.equalsIgnoreCase("grep")){
+            return new Grep();
         } else {
             return null;
         }
