@@ -3,7 +3,11 @@
 
 name: Java CI with Gradle
 
-on: [pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,7 +22,7 @@ jobs:
         java-version: 11
     - name: Build with Gradle
       run: ./gradlew build
-
+      
   test:
 
     runs-on: ubuntu-latest
