@@ -1,11 +1,15 @@
 package commandline;
 
+import commandline.commands.Cd;
+import commandline.commands.Command;
+import commandline.commands.Ls;
 import commandline.utils.ShellCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 // Testing
 class CommandLineTest {
@@ -60,11 +64,11 @@ class CommandLineTest {
     }
 
     /*Test variables
-    * a=p b=wd $a$b == command pwd
-    * a=ec b=ho $a$b 5 == echo 5 == 5
-    * a=ec b=ho echo $a$b == echo echo == echo
-    * a=ec b=ho echo $a $b == echo ec ho == ec ho
-    * */
+     * a=p b=wd $a$b == command pwd
+     * a=ec b=ho $a$b 5 == echo 5 == 5
+     * a=ec b=ho echo $a$b == echo echo == echo
+     * a=ec b=ho echo $a $b == echo ec ho == ec ho
+     * */
     @Test
     void testVars() throws IOException, InterruptedException {
         String input = "a=p \n b=wd \n $a$b \n exit";
@@ -132,4 +136,32 @@ class CommandLineTest {
         input = "git lolol \n exit";
         Assertions.assertEquals("Wrong command: git lolol\n", out(input));
     }
+
+    @Test
+    void testLsCommands() {
+        Command ls = new Ls();
+        ArrayList<String> lst = new ArrayList<>();
+        String expected = "build  build.gradle.kts  gradle  gradlew  gradlew.bat  README.md  settings.gradle  src  testFiles";
+        Assertions.assertEquals(expected, ls.run(lst, ""));
+        lst.add("src");
+        expected = "main  test";
+        Assertions.assertEquals(expected, ls.run(lst, ""));
+        lst.clear();
+        expected = "README.MD";
+        lst.add(expected);
+        Assertions.assertEquals(expected, ls.run(lst, ""));
+    }
+
+    @Test
+    void testCdCommands() {
+        Command cd = new Cd();
+        ArrayList<String> lst = new ArrayList<>();
+        String res = System.getProperty("user.dir");
+        cd.run(lst, "");
+        Assertions.assertEquals(System.getProperty("user.home"), System.getProperty("user.dir"));
+        lst.add("main");
+        cd.run(lst, "");
+        Assertions.assertEquals(System.getProperty("user.dir"), res + "\\" + "main");
+    }
+
 }
