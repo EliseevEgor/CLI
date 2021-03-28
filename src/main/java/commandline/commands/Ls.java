@@ -4,7 +4,12 @@ import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
-
+/* Function ls
+ * if it has 0 arguments, then it print all filenames and fir name
+ * in current directory, ignoring starting with ./ or ../
+ * if it has one argument, if it file, its just print filename
+ * if it directory, just print content from this directory
+ */
 public class Ls implements Command {
     @Override
     public String run(List<String> args, String before) {
