@@ -1,6 +1,10 @@
 package commandline.commands;
 
+import java.awt.geom.Path2D;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 /* Function cd
@@ -14,10 +18,13 @@ public class Cd implements Command {
         if (args.isEmpty()) {
             System.setProperty("user.dir", System.getProperty("user.home"));
         } else {
-            File file = new File(args.get(0));
-            System.setProperty("user.dir", file.getAbsolutePath());
+            var path = Paths.get(System.getProperty("user.dir"), args.get(1));
+            if (!Files.isDirectory(path)) {
+                return "no such directory";
+            }
+            System.setProperty("user.dir", path.toAbsolutePath().toString());
         }
-        return null;
+        return "";
     }
 
 }

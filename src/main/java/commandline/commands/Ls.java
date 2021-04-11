@@ -1,6 +1,7 @@
 package commandline.commands;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,15 +16,13 @@ public class Ls implements Command {
     public String run(List<String> args, String before) {
         StringBuilder resString = new StringBuilder();
         if (args.isEmpty()) {
-            File curDir = new File(".");
+            File curDir = Paths.get(System.getProperty("user.dir")).toFile();
             for (File file : Objects.requireNonNull(curDir.listFiles())) {
                 String name = file.getName();
-                if (!name.startsWith(".")) {
-                    resString.append(name).append("  ");
-                }
+                resString.append(name).append("  ");
             }
         } else {
-            File curDir = new File(args.get(0));
+            File curDir = Paths.get(System.getProperty("user.dir"), args.get(1)).toFile();
             if (curDir.isDirectory()) {
                 for (File file : Objects.requireNonNull(curDir.listFiles())) {
                     resString.append(file.getName()).append("  ");
